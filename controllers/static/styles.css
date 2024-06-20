@@ -1,9 +1,14 @@
+body {
+    font-family: Consolas, serif;
+}
+
+
 table {
     margin: auto;
 }
 
 td {
-    border: 0.05rem solid black;
+    border: 0.04rem solid black;
 }
 
 td, .letter-input {
@@ -12,9 +17,12 @@ td, .letter-input {
 }
 
 .letter-input {
-    font-family: Consolas, serif;
     font-size: 2rem;
     border: none;
+}
+
+input:focus {
+    background: var(--bs-primary);
 }
 
 

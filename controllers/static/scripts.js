@@ -4,14 +4,16 @@ const letters = document.getElementsByClassName("letter-input");
 // add listeners
 for (let i = 0; i < letters.length; i++){
     let current = letters[i];
-    current.addEventListener("keyup",limitInput);
+    current.addEventListener("keyup",easyMovement);
     current.nextLetter = letters[(i + 1) % letters.length];
     current.previousLetter = letters[(letters.length + i - 1) % letters.length];
 }
 
 
-function limitInput(eve){
-    
+function easyMovement(eve){
+
+    console.log(eve.code)
+
     let current = eve.currentTarget;
     let next = eve.currentTarget.nextLetter;
     let previous = eve.currentTarget.previousLetter;
@@ -34,6 +36,25 @@ function limitInput(eve){
         current.blur();
         // swap focus to previous cell
         previous.focus();
+    }
+
+    //control location with arrows
+    if (eve.code === "ArrowRight"){
+        current.blur();
+        next.focus();
+    }
+    if (eve.code === "ArrowLeft"){
+        current.blur();
+        previous.focus();
+    }
+
+}
+
+//clear all inputs
+function clearInputs(){
+    for (let l of letters){
+        l.value = null;
+        console.log(l.value);
     }
 
 }

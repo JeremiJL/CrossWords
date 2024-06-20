@@ -2,13 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Crosswords</title>
-    <!-- custom css -->
-    <link rel="stylesheet"  href="styles.css">
+    <title>Cross Words</title>
+
+    <!-- bootstrap css and js  -->
+    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../static/bootstrap/js/bootstrap.bundle.js"></script>
+    <!--  custom css  -->
+    <link rel="stylesheet"  href="../static/styles.css">
+
 </head>
 <body>
 
-<main>
+<div class="container-fluid my-5">
     <table>
         <tr>
             <td> <input class="letter-input" type="text"> </td>
@@ -26,11 +31,16 @@
             <td> <input class="letter-input" type="text"> </td>
         </tr>
     </table>
+</div>
 
-</main>
+<div class="container-fluid d-flex justify-content-center mt-2">
+    <a href="{{ url_for('get_home') }}" class="btn btn-primary mx-2">Home</a>
+    <button class="btn btn-danger mx-2" onclick="clearInputs()">Reset</button>
+    <button class="btn btn-success mx-2">Submit</button>
+</div>
 
 <!-- custom js -->
-<script src="scripts.js">
+<script src="../static/scripts.js">
 </script>
 
 </body>
