@@ -1,0 +1,26 @@
+table {
+    margin: auto;
+}
+
+td {
+    border: 0.05rem solid black;
+}
+
+td, .letter-input {
+    width: 5rem;
+    height: 5rem;
+}
+
+.letter-input {
+    font-family: Consolas, serif;
+    font-size: 2rem;
+    border: none;
+}
+
+
+
+
+
+
+
+
