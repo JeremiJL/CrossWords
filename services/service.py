@@ -1,7 +1,7 @@
 import random
 
 from repositories.repository import Repository
-from gameplay.brain import create_matrix
+from gameplay.brain import create_matrix, validate_words
 
 
 class Service:
@@ -16,3 +16,7 @@ class Service:
     def get_matrix(self, code):
         puzzle = self.repository.find(code)
         return create_matrix(puzzle)
+
+    def validate(self, letters, code):
+        puzzle = self.repository.find(code)
+        return validate_words(letters, puzzle)

@@ -33,8 +33,14 @@ def create_matrix(puzzle):
     return matrix
 
 
-def validate_words(input_list, puzzle):
-    for proposed, correct in zip(input_list, puzzle.words_hints_map.keys()):
+def validate_words(letters, puzzle):
+
+    correct_letters = ""
+    for word in puzzle.words_hints_map.keys():
+        for letter in word:
+            correct_letters += letter
+
+    for proposed, correct in zip(letters, correct_letters):
         if str(proposed).lower() != str(correct).lower():
             return False
     return True

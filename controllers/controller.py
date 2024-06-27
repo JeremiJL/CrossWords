@@ -31,8 +31,11 @@ def game(code):
         matrix = service.get_matrix(code)
         return render_template('game.html', game_code=code, game_matrix=matrix)
     else:
-        # handle logic
-        pass
+        result = request.form.values()
+        if service.validate(result, code):
+            return redirect(url_for('finish'))
+        else:
+            return redirect(url_for('game', code=code))
 
 
 @app.route('/create', methods=['GET', 'POST'])
