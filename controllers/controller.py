@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
 
-from services import service
+from services.service import Service
 
+service = Service()
 app = Flask(__name__)
-service = service.Service()
 
 
 @app.route('/home', methods=['GET'])

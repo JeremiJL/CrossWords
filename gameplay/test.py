@@ -1,6 +1,7 @@
 from brain import *
 from puzzle import Puzzle
 from repositories import repository
+from services import service
 
 words_hints = {"color":"feature of every object","trolley":"for shop items",
                    "rock":"hard","mice":"runs from cat","key":"unlocks"}
@@ -19,12 +20,15 @@ puzzle = Puzzle(words_hints,solution)
 #     print(row)
 
 
-repo = repository.Repository()
+service = service.Service()
+repo = service.repository
+
+print(repo.find(1).words_hints_map)
 
 # repo.save(puzzle)
 # repo.find_max_id()
 
-# print(repo.list_all_game_ids())
+print(repo.list_all_game_ids())
 
 matrix = create_matrix(puzzle)
 

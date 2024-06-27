@@ -1,5 +1,5 @@
 def create_matrix(puzzle):
-    words = puzzle.words_hints_map.keys()
+    words = dict(puzzle.words_hints_map).keys()
     solution = puzzle.solution
     positions = dict()
 

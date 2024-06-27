@@ -4,13 +4,13 @@ from configparser import ConfigParser
 
 
 def reformat(query_result):
-    return str(query_result).replace("(", "").replace(")", ",").replace(",", "")
+    return str(query_result).replace("(", "").replace(")", ",").replace(",", "").replace("\'", "")
 
 
 def connect():
     # read configurations
     configur = ConfigParser()
-    configur.read('../configuration/config.ini')
+    configur.read('configuration/config.ini')
 
     user = str(configur.get('database', 'username'))
     password = str(configur.get('database', 'password'))
