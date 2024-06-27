@@ -1,17 +1,40 @@
-class Brain:
+def create_matrix(puzzle):
+    words = puzzle.words_hints_map.keys()
+    solution = puzzle.solution
+    positions = dict()
 
-    def __init__(self, puzzle):
-        # puzzle object
-        self.puzzle = puzzle
-        # matrix interpretation
-        self.words_matrix = self.create_matrix()
-        pass
+    for word, i in zip(words, range(len(words))):
+        sol_index = str(word).index(solution[i])
+        positions[word] = [sol_index, len(word) - sol_index]
 
-    def create_matrix(self):
-        return []
+    # row length
+    max_length = max([p[0] for p in positions.values()]) + max([p[1] for p in positions.values()])
+    solution_index = max([p[0] for p in positions.values()])
 
-    def validate_words(self, input_list):
-        for proposed, correct in zip(input_list, self.puzzle.words_hints_map.keys()):
-            if str(proposed).lower() != str(correct).lower():
-                return False
-        return True
+    # create empty matrix
+    matrix = []
+    for _ in words:
+        # 0 - empty
+        matrix.append([0 for _ in range(max_length)])
+
+    # fill with letters placeholders
+    for arr, word, i in zip(matrix, words, range(len(words))):
+        sol = str(word).index(solution[i])
+        start = solution_index - sol
+        for k in range(start, start + len(word)):
+            # 1 - letter
+            arr[k] = 1
+
+    # fill with solution index
+    for arr in matrix:
+        # 2 - solution
+        arr[solution_index] = 2
+
+    return matrix
+
+
+def validate_words(input_list, puzzle):
+    for proposed, correct in zip(input_list, puzzle.words_hints_map.keys()):
+        if str(proposed).lower() != str(correct).lower():
+            return False
+    return True

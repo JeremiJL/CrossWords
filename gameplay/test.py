@@ -1,10 +1,10 @@
-from brain import Brain
+from brain import *
 from puzzle import Puzzle
 from repositories import repository
 
 words_hints = {"color":"feature of every object","trolley":"for shop items",
                    "rock":"hard","mice":"runs from cat","key":"unlocks"}
-solution = "pompelon"
+solution = "clock"
 
 puzzle = Puzzle(words_hints,solution)
 
@@ -21,7 +21,19 @@ puzzle = Puzzle(words_hints,solution)
 
 repo = repository.Repository()
 
-repo.save(puzzle)
+# repo.save(puzzle)
 # repo.find_max_id()
 
-print(repo.list_all_game_ids())
+# print(repo.list_all_game_ids())
+
+matrix = create_matrix(puzzle)
+
+for row in matrix:
+    for el in row:
+        print(el, end=", ")
+    print("")
+
+
+print(validate_words(["color","trolley","rock","mice","key"],puzzle))
+
+
