@@ -11,9 +11,9 @@ def connect():
     configur = ConfigParser()
     configur.read('../configuration/config.ini')
 
-    user = str(configur.get('database', 'username'))
-    password = str(configur.get('database', 'password'))
-    link = str(configur.get('database', 'host')) + "/" + str(configur.get('database', 'service'))
+    user = str(configur.get('repositories', 'username'))
+    password = str(configur.get('repositories', 'password'))
+    link = str(configur.get('repositories', 'host')) + "/" + str(configur.get('repositories', 'service'))
 
     global connection
     connection = oracledb.connect(user=user, password=password, dsn=link)

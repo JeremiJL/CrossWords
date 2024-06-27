@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from database import service
+from repositories import repository
 from gameplay.brain import Brain
 
 app = Flask(__name__)
@@ -16,14 +16,15 @@ def get_pick():
         return render_template('pick.html')
     else:
         puzzleId = request.form['puzzleId']
-        return redirect(url_for('get_game', pId=puzzleId))
+        pass
+        # return redirect(url_for('get_game', pId=puzzleId))
 
 
-@app.route('/get_game/<pId>')
-def get_game(pId):
-    puzzle = service.get_puzzle(pId)
-    brain = Brain(puzzle)
-    return render_template('game.html', matrix = brain.logic_matrix)
+# @app.route('/get_game/<pId>')
+# def get_game(pId):
+#     puzzle = service.get_puzzle(pId)
+#     brain = Brain(puzzle)
+#     return render_template('game.html', matrix = brain.logic_matrix)
 
 
 if __name__ == '__main__':
