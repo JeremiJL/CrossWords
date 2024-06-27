@@ -23,7 +23,7 @@ puzzle = Puzzle(words_hints,solution)
 service = service.Service()
 repo = service.repository
 
-print(repo.find(1).words_hints_map)
+print(repo.find(2).solution)
 
 # repo.save(puzzle)
 # repo.find_max_id()

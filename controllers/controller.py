@@ -17,7 +17,10 @@ def pick():
         return render_template('pick.html')
     else:
         game_code = request.form.get('game_code')
-        return redirect(url_for('game', code=game_code))
+        if service.check_code(game_code):
+            return redirect(url_for('game', code=game_code))
+        else:
+            return redirect(url_for('error', message="There is no Puzzle with given ID"))
 
 
 @app.route('/random', methods=['GET'])
@@ -55,6 +58,11 @@ def created():
 @app.route('/finish', methods=['GET'])
 def finish():
     return render_template('finish.html')
+
+
+@app.route("/error/<message>", methods=['GET'])
+def error(message):
+    return render_template('error.html', error_message=message)
 
 
 if __name__ == '__main__':

@@ -20,3 +20,6 @@ class Service:
     def validate(self, letters, code):
         puzzle = self.repository.find(code)
         return validate_words(letters, puzzle)
+
+    def check_code(self, code):
+        return int(code) in self.repository.list_all_game_ids()
