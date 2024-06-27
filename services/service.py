@@ -23,3 +23,7 @@ class Service:
 
     def check_code(self, code):
         return int(code) in self.repository.list_all_game_ids()
+
+    def get_hints(self,code):
+        puzzle = self.repository.find(code)
+        return puzzle.words_hints_map.values()

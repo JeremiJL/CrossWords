@@ -23,6 +23,11 @@
                     </tr>
                 {% endfor %}
             </table>
+            <ul>
+                {% for hint in game_hints %}
+                    <li>{{ hint }}</li>
+                {% endfor %}
+            </ul>
         </div>
 
         <div class="container-fluid d-flex justify-content-center mt-2">

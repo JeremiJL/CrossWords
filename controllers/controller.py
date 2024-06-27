@@ -32,7 +32,8 @@ def random():
 def game(code):
     if request.method == 'GET':
         matrix = service.get_matrix(code)
-        return render_template('game.html', game_code=code, game_matrix=matrix)
+        hints = service.get_hints(code)
+        return render_template('game.html', game_code=code, game_matrix=matrix, game_hints=hints)
     else:
         result = request.form.values()
         if service.validate(result, code):
