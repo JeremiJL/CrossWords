@@ -1,18 +1,27 @@
 from brain import Brain
 from puzzle import Puzzle
+from repositories import repository
 
 words_hints = {"color":"feature of every object","trolley":"for shop items",
                    "rock":"hard","mice":"runs from cat","key":"unlocks"}
-solution = "clock"
+solution = "pompelon"
 
 puzzle = Puzzle(words_hints,solution)
 
-brain = Brain(puzzle)
+# brain = Brain(puzzle)
+#
+# matrix = brain.words_matrix
+#
+# for row in matrix:
+#     print(row)
+#
+# for row in brain.logic_matrix:
+#     print(row)
 
-matrix = brain.words_matrix
 
-for row in matrix:
-    print(row)
+repo = repository.Repository()
 
-for row in brain.logic_matrix:
-    print(row)
+repo.save(puzzle)
+# repo.find_max_id()
+
+print(repo.list_all_game_ids())
