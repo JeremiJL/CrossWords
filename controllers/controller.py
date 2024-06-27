@@ -1,32 +1,54 @@
 from flask import Flask, render_template, request, redirect, url_for
-from repositories import repository
-from gameplay.brain import Brain
 
 app = Flask(__name__)
-brain = None
 
-@app.route('/')
-def get_home():
+
+@app.route('/home', methods=['GET'])
+def home():
     return render_template('home.html')
 
 
-@app.route("/pick", methods = ['POST', 'GET'])
-def get_pick():
+@app.route('/pick', methods=['GET', 'POST'])
+def pick():
     if request.method == 'GET':
         return render_template('pick.html')
     else:
-        puzzleId = request.form['puzzleId']
+        game_code = request.form.get('game_code')
+        return redirect(url_for('game', code=game_code))
+
+
+@app.route('/random', methods=['GET'])
+def random():
+    return redirect(url_for('game', code=1))
+
+
+@app.route('/game/<code>', methods=['GET', 'POST'])
+def game(code):
+    if request.method == 'GET':
+        return render_template('game.html', game_code=code)
+    else:
+        # handle logic
         pass
-        # return redirect(url_for('get_game', pId=puzzleId))
 
 
-# @app.route('/get_game/<pId>')
-# def get_game(pId):
-#     puzzle = service.get_puzzle(pId)
-#     brain = Brain(puzzle)
-#     return render_template('game.html', matrix = brain.logic_matrix)
+@app.route('/create', methods=['GET', 'POST'])
+def create():
+    if request.method == 'GET':
+        return render_template('create.html')
+    else:
+        # handle creation
+        return redirect(url_for('created'))
+
+
+@app.route('/created', methods=['GET'])
+def created():
+    return render_template('created.html')
+
+
+@app.route('/finish', methods=['GET'])
+def finish():
+    return render_template('finish.html')
 
 
 if __name__ == '__main__':
-    service.connect()
     app.run()

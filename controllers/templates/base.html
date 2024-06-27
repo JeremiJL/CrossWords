@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cross Words</title>
+
+    <!-- bootstrap css and js  -->
+    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../static/bootstrap/js/bootstrap.bundle.js"></script>
+    <!--  custom css  -->
+    <link rel="stylesheet"  href="../static/styles.css">
+
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+
+
+<header>
+    <div class="container-fluid d-flex mt-4 justify-content-center">
+        <a href="{{ url_for('home') }}"><h1>Simple Cross Words</h1></a>
+    </div>
+    <div class="container-fluid d-flex mb-4 justify-content-center">
+        <h2>{% block title %}{% endblock %}</h2>
+    </div>
+</header>
+
+
+<main>
+    {% block main %}{% endblock %}
+</main>
+
+<footer class="footer mt-auto bg-dark text-white py-2">
+    <div class="d-flex justify-content-center"><p class="lead">Simple Crosswords</p></div>
+    <div id="signature" class="d-flex justify-content-center"><p>Jeremi Lipniacki</p></div>
+</footer>
+
+</body>
+
+{#<script>#}
+{#    {%  block scripts %} {%  endblock %}#}
+{#</script>#}
+
+<script src="../static/scripts.js"></script>
+
+</html>
