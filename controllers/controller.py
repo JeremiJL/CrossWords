@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
 
+from services import service
+
 app = Flask(__name__)
+service = service.Service()
 
 
 @app.route('/home', methods=['GET'])
@@ -19,13 +22,14 @@ def pick():
 
 @app.route('/random', methods=['GET'])
 def random():
-    return redirect(url_for('game', code=1))
+    return redirect(url_for('game', code=service.get_random_game_code()))
 
 
 @app.route('/game/<code>', methods=['GET', 'POST'])
 def game(code):
     if request.method == 'GET':
-        return render_template('game.html', game_code=code)
+        matrix = service.get_matrix(code)
+        return render_template('game.html', game_code=code, game_matrix=matrix)
     else:
         # handle logic
         pass

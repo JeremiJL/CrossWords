@@ -1,2 +1,18 @@
-puzzle = None
+import random
 
+from repositories.repository import Repository
+from gameplay.brain import create_matrix
+
+
+class Service:
+    def __init__(self):
+        self.repository = Repository()
+        self.puzzle = None
+
+    def get_random_game_code(self):
+        codes = self.repository.list_all_game_ids()
+        return codes[random.randint(0, len(codes) - 1)]
+
+    def get_matrix(self, code):
+        puzzle = self.repository.find(code)
+        return create_matrix(puzzle)
