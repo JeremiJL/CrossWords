@@ -1,3 +1,5 @@
+from configparser import ConfigParser
+
 from flask import Flask, render_template, request, redirect, url_for
 
 from services.service import Service
@@ -66,5 +68,13 @@ def error(message):
     return render_template('error.html', error_message=message)
 
 
+def get_port_from_config():
+    # read configurations
+    configur = ConfigParser()
+    configur.read('configuration/config.ini')
+    return int(configur.get('flask', 'port'))
+
+
 if __name__ == '__main__':
-    app.run()
+    port = get_port_from_config()
+    app.run(port=port)
