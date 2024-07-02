@@ -54,7 +54,6 @@ function easyMovement(eve){
 function clearInputs(){
     for (let l of letters){
         l.value = null;
-        console.log(l.value);
     }
 
 }
