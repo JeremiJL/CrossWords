@@ -4,4 +4,14 @@
 
 {% block main %}
 
+    {% if status %}
+        <div class="container-fluid d-flex my-5 justify-content-center">
+            <h3 class="text-success">Puzzle created successfully under id : {{ game_id }}.</h3>
+        </div>
+    {% else %}
+        <div class="container-fluid d-flex my-5 justify-content-center">
+            <h3 class="text-danger">Puzzle is invalid! Can not save it!</h3>
+        </div>
+    {% endif %}
+
 {%  endblock %}

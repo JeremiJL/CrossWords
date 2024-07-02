@@ -3,7 +3,15 @@
 {%  block title %}Finish{% endblock %}
 
 {% block main %}
-    <div class="container-fluid d-flex my-5 justify-content-center">
-        <h3>Congratulations!</h3>
-    </div>
+
+    {% if is_complete %}
+        <div class="container-fluid d-flex my-5 justify-content-center">
+            <h3 class="text-success">Congratulations!</h3>
+        </div>
+    {% else %}
+        <div class="container-fluid d-flex my-5 justify-content-center">
+            <h3 class="text-danger">Not this time :(</h3>
+        </div>
+    {% endif %}
+
 {%  endblock %}

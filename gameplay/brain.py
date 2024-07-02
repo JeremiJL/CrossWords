@@ -1,3 +1,8 @@
+from copy import copy
+
+from gameplay.puzzle import Puzzle
+
+
 def create_matrix(puzzle):
     words = dict(puzzle.words_hints_map).keys()
     solution = puzzle.solution
@@ -33,8 +38,21 @@ def create_matrix(puzzle):
     return matrix
 
 
-def validate_words(letters, puzzle):
+def create_puzzle(words):
+    print(words)
+    solution = words.pop()
+    words_hints = dict()
 
+    for i in range(0, len(words), 2):
+        w = words[i]
+        h = words[i + 1]
+        words_hints[w] = h
+
+    return Puzzle(solution=solution, words_hints_map=words_hints)
+
+
+
+def validate_words(letters, puzzle):
     correct_letters = ""
     for word in puzzle.words_hints_map.keys():
         for letter in word:

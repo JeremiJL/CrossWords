@@ -4,4 +4,34 @@
 
 {% block main %}
 
+    <form action="customize.html" method="post" class="container-fluid w-50 justify-content-center">
+
+        <p class="lead">
+            Provide consequent words and hints of the puzzle. Remember about correct order!
+        </p>
+
+        {%  for i in range(puzzle_size) %}
+
+            <row class="row">
+                <div class="col">
+                    <label for="a{{ i }}">Provide {{ i }} word:</label>
+                    <input id="a{{ i }}" type="text" name="a{{ i }}" minlength="1" class="form-control my-1">
+                </div>
+                <div class="col">
+                    <label for="h{{ i }}">Provide {{ i }} hint:</label>
+                    <input id="h{{ i }}" type="text" name="h{{ i }}" minlength="1" class="form-control my-2">
+                </div>
+            </row>
+
+
+
+        {% endfor %}
+        <br>
+        <label for="solution">Provide puzzle solution:</label>
+        <input id="solution" type="text" minlength="1" name="solution" class="form-control my-2">
+        <br>
+        <button class="btn btn-lg btn-success" type="submit">Create!</button>
+
+    </form>
+
 {%  endblock %}

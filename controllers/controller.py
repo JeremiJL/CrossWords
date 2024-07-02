@@ -1,3 +1,4 @@
+import copy
 from configparser import ConfigParser
 
 from flask import Flask, render_template, request, redirect, url_for
@@ -38,10 +39,9 @@ def game(code):
         return render_template('game.html', game_code=code, game_matrix=matrix, game_hints=hints)
     else:
         result = request.form.values()
-        if service.validate(result, code):
-            return redirect(url_for('finish'))
-        else:
-            return redirect(url_for('game', code=code))
+        complete = service.validate(result, code)
+        print(complete)
+        return render_template('finish.html', is_complete=complete)
 
 
 @app.route('/create', methods=['GET', 'POST'])
@@ -49,8 +49,22 @@ def create():
     if request.method == 'GET':
         return render_template('create.html')
     else:
-        # handle creation
-        return redirect(url_for('created'))
+        size = request.form.get('words_count')
+        return redirect(url_for('customize', puzzle_size=size))
+
+
+@app.route('/customize/<puzzle_size>', methods=['GET', 'POST'])
+def customize(puzzle_size):
+    if request.method == 'GET':
+        return render_template('customize.html', puzzle_size=int(puzzle_size))
+    else:
+        words = list(request.form.values())
+        result = service.check(copy.deepcopy(words))
+        if result:
+            game_id = service.save_puzzle(words)
+            return render_template('created.html', status=result, game_id=game_id)
+        else:
+            return render_template('created.html', status=result)
 
 
 @app.route('/created', methods=['GET'])

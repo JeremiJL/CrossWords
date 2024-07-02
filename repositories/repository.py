@@ -51,7 +51,7 @@ class Repository:
             "insert into game (solution,gameId) values(" + str('\'' + puzzle.solution + '\'') + "," + str(
                 game_id) + ")")
 
-        # save puzzle instances
+        # save puzzle instance
         for (word, hint) in puzzle.words_hints_map.items():
             puzzle_id = int(self.find_max_puzzle_id()) + 1
             self.cursor.execute(
@@ -60,6 +60,7 @@ class Repository:
                 "," + str(puzzle_id) + ")")
 
         self.connection.commit()
+        return game_id
 
     def find_max_game_id(self):
         # find the greatest id
